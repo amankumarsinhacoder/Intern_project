@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supervisor Analysis Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen p-8 text-gray-800">
+    <header class="mb-8 border-b pb-4">
+        <h1 class="text-3xl font-bold text-indigo-900">Supervisor Transcript Analyzer</h1>
+        <p class="text-gray-600 italic">AI-Assisted Drafting for Psychology Interns</p>
+    </header>
+
+    <main class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- LEFT: INPUT SECTION -->
+        <section class="space-y-4">
+            <h2 class="text-xl font-semibold">Transcript Input</h2>
+            <textarea id="transcriptInput" class="w-full h-96 p-4 border rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Paste the transcript here..."></textarea>
+            <button onclick="runAnalysis()" id="runBtn" class="bg-indigo-600 text-white px-6 py-2 rounded-md font-medium hover:bg-indigo-700 transition w-full">
+                Run AI Analysis
+            </button>
+        </section>
+
+        <!-- RIGHT: EDITABLE OUTPUT SECTION -->
+        <section id="analysisOutput" class="hidden space-y-6">
+            <h2 class="text-xl font-semibold">Suggested Analysis (Editable)</h2>
+            
+            <!-- Rubric Score -->
+            <div class="bg-white p-4 rounded-lg shadow border-l-4 border-indigo-500">
+                <label class="font-bold block mb-2">Suggested Rubric Score (1-10):</label>
+                <input type="number" id="rubricScore" min="1" max="10" class="w-20 border rounded px-2 py-1 text-lg font-bold text-indigo-700">
+                <textarea id="justification" class="w-full mt-2 text-sm text-gray-600 border-none italic" rows="3"></textarea>
+            </div>
+
+            <!-- Evidence Quotes -->
+            <div>
+                <h3 class="font-bold mb-2">Extracted Evidence</h3>
+                <div id="evidenceList" class="space-y-2"></div>
+            </div>
+
+            <!-- KPI Mapping & Gaps -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-blue-50 p-3 rounded">
+                    <h4 class="font-bold text-sm text-blue-800 uppercase">KPIs Identified</h4>
+                    <div id="kpiTags" class="flex flex-wrap gap-1 mt-2"></div>
+                </div>
+                <div class="bg-orange-50 p-3 rounded">
+                    <h4 class="font-bold text-sm text-orange-800 uppercase">Gap Analysis</h4>
+                    <ul id="gapList" class="text-xs list-disc pl-4 mt-2"></ul>
+                </div>
+            </div>
+
+            <button onclick="exportFinal()" class="w-full bg-green-600 text-white py-3 rounded-lg font-bold shadow-lg hover:bg-green-700 transition">
+                Finalize & Export Report
+            </button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
